@@ -3,6 +3,7 @@ package com.coursework.CourseWorkHorduz.models;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 public class Topic {
     private Integer id;
@@ -45,7 +46,16 @@ public class Topic {
         comments.add(comment);
     }
 
-    //TODO equals and hashCode
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Topic topic = (Topic) o;
+        return id.equals(topic.id) && title.equals(topic.title) && description.equals(topic.description) && comments.equals(topic.comments);
+    }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, description, comments);
+    }
 }

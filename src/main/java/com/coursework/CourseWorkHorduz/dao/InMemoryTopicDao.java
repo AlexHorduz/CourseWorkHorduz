@@ -25,9 +25,21 @@ public class InMemoryTopicDao implements ITopicDao {
         return database.getTopics().get(id);
     }
 
+
+
     @Override
     public void addTopic(String title, String description) {
         Topic topic = new Topic(id, title, description);
         database.getTopics().put(id++, topic);
+    }
+
+    @Override
+    public void deleteTopic(Topic topic) {
+        database.getTopics().remove(topic.getId());
+    }
+
+    @Override
+    public void updateTopic(Topic topic, Integer id) {
+        database.getTopics().put(id, topic);
     }
 }

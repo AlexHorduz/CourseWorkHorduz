@@ -22,7 +22,7 @@ public class InMemoryUserDao implements IUserDao {
 
     public User getUserByLogin(String login) {
         for (User user : database.getUsers().values()) {
-            if (user.getLogin() == login)
+            if (user.getLogin().equals(login))
                 return user;
         }
         return null;
@@ -30,7 +30,7 @@ public class InMemoryUserDao implements IUserDao {
 
     @Override
     public void addUser(String login, String passwordHash) {
-        User user = new User(id, login, passwordHash);
+        User user = new User(id, login, passwordHash, false);
         database.getUsers().put(id++, user);
     }
 

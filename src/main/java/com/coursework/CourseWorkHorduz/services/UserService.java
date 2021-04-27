@@ -13,8 +13,8 @@ public class UserService {
     public UserService(IDaoFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
-
-    private String getHash(String password) throws NoSuchAlgorithmException {
+    
+    public String getHash(String password) throws NoSuchAlgorithmException {
         StringBuilder hash = new StringBuilder();
         MessageDigest sha = MessageDigest.getInstance("SHA-512");
         byte[] hashedBytes = sha.digest(password.getBytes());
@@ -41,7 +41,8 @@ public class UserService {
         if (user == null) {
             throw new NoSuchUserException("No user with login '" + login + "'");
         }
-        if (user.getPasswordHash().equals(getHash(password))) {
+
+        if (!user.getPasswordHash().equals(getHash(password))) {
             throw new IncorrectPasswordException("Incorrect Password");
         }
         return user;
@@ -49,13 +50,16 @@ public class UserService {
 
     public void signUp(String login, String password, String confirmedPassword)
             throws FailedPasswordConfirmationException, UserAlreadyExistException, NoSuchAlgorithmException {
-        if (!password.equals(confirmedPassword)) {
-            throw new FailedPasswordConfirmationException("Passwords don't match");
-        }
 
         if (daoFactory.getUserDao().getUserByLogin(login) != null) {
             throw new UserAlreadyExistException("User with login '" + login + "' already exist");
         }
+
+        if (!password.equals(confirmedPassword)) {
+            throw new FailedPasswordConfirmationException("Passwords don't match");
+        }
+
+
 
         daoFactory.getUserDao().addUser(login, getHash(password));
     }

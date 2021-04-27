@@ -1,0 +1,44 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: 38095
+  Date: 27.04.2021
+  Time: 14:52
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<ul class="nav nav-pills">
+    <li class="nav-item col-md-1">
+        <a class="nav-link" href="./topics">All topics</a>
+    </li>
+
+    <li class="nav-item col-md-20" style="padding-left: 80%">
+        <c:if test="${!empty user}">
+            <a class="nav-link disabled" href=""><c:out value="${user.login}"/></a>
+        </c:if>
+    </li>
+    <div>
+        <li class="nav-item">
+            <a class="nav-link" href="
+        <c:choose>
+            <c:when test="${!empty user}">
+                    <c:out value="./logout"/>
+            </c:when>
+            <c:otherwise>
+                <c:out value="./login"/>
+            </c:otherwise>
+        </c:choose>">Log
+                <c:choose>
+                    <c:when test="${!empty user}">
+                        <c:out value="Out"/>
+                    </c:when>
+                    <c:otherwise>
+                        <c:out value="In"/>
+                    </c:otherwise>
+                </c:choose>
+            </a>
+        </li>
+    </div>
+</ul>
+<hr>
+<br>

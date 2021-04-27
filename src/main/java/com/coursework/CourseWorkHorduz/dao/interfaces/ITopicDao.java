@@ -10,4 +10,8 @@ public interface ITopicDao {
     Topic getTopicById(Integer id);
 
     void addTopic(String title, String description);
+
+    void deleteTopic(Topic topic);
+
+    void updateTopic(Topic topic, Integer id);
 }
