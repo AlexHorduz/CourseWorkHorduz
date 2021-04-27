@@ -13,7 +13,7 @@ public class UserService {
     public UserService(IDaoFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
-    
+
     public String getHash(String password) throws NoSuchAlgorithmException {
         StringBuilder hash = new StringBuilder();
         MessageDigest sha = MessageDigest.getInstance("SHA-512");
