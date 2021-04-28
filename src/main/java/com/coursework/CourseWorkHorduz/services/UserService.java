@@ -60,7 +60,6 @@ public class UserService {
         }
 
 
-
         daoFactory.getUserDao().addUser(login, getHash(password));
     }
 }
