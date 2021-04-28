@@ -1,3 +1,3 @@
 # CourseWorkHorduz
 
-![alt text](https://github.com/AlexHorduz/CourseWorkHorduz/blob/master/java.jpg?raw=true)
+![alt text](https://github.com/AlexHorduz/CourseWorkHorduz/blob/master/java.png?raw=true)
